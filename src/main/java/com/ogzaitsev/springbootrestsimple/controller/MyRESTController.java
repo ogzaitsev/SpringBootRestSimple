@@ -30,25 +30,25 @@ public class MyRESTController {
         return result;
     }
 
-//    @PostMapping("/")
-//    public Employee addEmployee(@RequestBody Employee employee) {
-//        service.saveEmployee(employee);
-//        return employee;
-//    }
-//    @PutMapping ("/")
-//    public Employee updateEmployee(@RequestBody Employee employee) {
-//        service.updateEmployee(employee);
-//        return employee;
-//    }
-//
-//    @DeleteMapping("/delete/{id}")
-//    public String deleteEmployee(@PathVariable int id) {
-//        String response;
-//        if(service.deleteEmployee(id)) {
-//            response = "Employee ID=" + id + " was deleted";
-//        } else {
-//            throw new NoSuchEmployeeException("There is no employee with id=" + id);
-//        }
-//        return response;
-//    }
+    @PostMapping("/")
+    public Employee addEmployee(@RequestBody Employee employee) {
+        service.saveEmployee(employee);
+        return employee;
+    }
+    @PutMapping ("/")
+    public Employee updateEmployee(@RequestBody Employee employee) {
+        service.updateEmployee(employee);
+        return employee;
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public String deleteEmployee(@PathVariable int id) {
+        String response;
+        if(service.deleteEmployee(id)) {
+            response = "Employee ID=" + id + " was deleted";
+        } else {
+            throw new NoSuchEmployeeException("There is no employee with id=" + id);
+        }
+        return response;
+    }
 }

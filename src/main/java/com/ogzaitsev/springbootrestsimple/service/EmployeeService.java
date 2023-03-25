@@ -12,7 +12,7 @@ public interface EmployeeService {
 
     public void saveEmployee(Employee employee);
 
-    public boolean deleteEmployee(int id);
+    public void deleteEmployee(int id);
 
     public void updateEmployee(Employee employee);
 }

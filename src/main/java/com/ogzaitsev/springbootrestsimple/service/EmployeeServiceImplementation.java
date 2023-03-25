@@ -1,45 +1,45 @@
 package com.ogzaitsev.springbootrestsimple.service;
 
-import com.ogzaitsev.springbootrestsimple.dao.EmployeeDAO;
+import com.ogzaitsev.springbootrestsimple.dao.EmployeeRepository;
 import com.ogzaitsev.springbootrestsimple.entity.Employee;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 @org.springframework.stereotype.Service
 public class EmployeeServiceImplementation implements EmployeeService {
 
     @Autowired
-    private EmployeeDAO dao;
+    private EmployeeRepository employeeRepository;
 
     @Override
-    @Transactional
     public List<Employee> getAllEmployees() {
-        return dao.getAllEmployees();
+        return employeeRepository.findAll();
     }
 
     @Override
-    @Transactional
     public Employee getEmployee(int id) {
-        return dao.getEmployee(id);
+        Employee employee = null;
+        Optional<Employee> optionalEmployee = employeeRepository.findById(id);
+        if(optionalEmployee.isPresent()) {
+            employee = optionalEmployee.get();
+        }
+        return employee;
     }
 
     @Override
-    @Transactional
     public void saveEmployee(Employee employee) {
-        dao.saveEmployee(employee);
+        employeeRepository.save(employee);
     }
 
     @Override
-    @Transactional
-    public boolean deleteEmployee(int id) {
-        return dao.deleteEmployee(id);
+    public void deleteEmployee(int id) {
+        employeeRepository.deleteById(id);
     }
 
     @Override
-    @Transactional
     public void updateEmployee(Employee employee) {
-        dao.saveEmployee(employee);
+        saveEmployee(employee);
     }
 }
